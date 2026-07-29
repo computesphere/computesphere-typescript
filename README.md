@@ -20,7 +20,7 @@ Tokens**) or an **OAuth access token**.
 import { createClient, parseProblem } from "@computesphere/api-client";
 
 const api = createClient({
-  baseUrl: "https://api.computesphere.com/api/v2",
+  baseUrl: "https://api.computesphere.com/v2",
   token: () => getAccessToken(), // return your ComputeSphere access token
 });
 
@@ -38,4 +38,4 @@ if (error) {
 
 ## License
 
-[Apache-2.0](../../LICENSE). ComputeSphere is a trademark of ComputeSphere LLC.
+[Apache-2.0](./LICENSE). ComputeSphere is a trademark of ComputeSphere LLC.
