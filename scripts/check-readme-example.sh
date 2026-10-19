@@ -2,7 +2,8 @@
 # The TypeScript example in README.md must type-check against the published
 # package. Extracts the README's ```ts block and runs `tsc --noEmit` (strict)
 # over it in a throwaway project with @computesphere/api-client installed.
-# PACKAGE_VERSION picks the version (default: latest).
+# PACKAGE_VERSION picks the package version (default: latest); typescript and
+# @types/node are pinned below (TYPESCRIPT_VERSION, TYPES_NODE_VERSION override).
 # Run from the repository root: scripts/check-readme-example.sh
 set -euo pipefail
 
@@ -33,6 +34,6 @@ cat > tsconfig.json <<'JSON'
   "include": ["main.ts"]
 }
 JSON
-npm install --silent --no-audit --no-fund "@computesphere/api-client@${PACKAGE_VERSION:-latest}" typescript @types/node
+npm install --silent --no-audit --no-fund "@computesphere/api-client@${PACKAGE_VERSION:-latest}" "typescript@${TYPESCRIPT_VERSION:-5.6.3}" "@types/node@${TYPES_NODE_VERSION:-22.20.5}"
 npx --no-install tsc -p .
 echo "README.md ts example type-checks against @computesphere/api-client@$(node -p "require('./node_modules/@computesphere/api-client/package.json').version")"
