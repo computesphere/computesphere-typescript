@@ -1,0 +1,24 @@
+name: README example
+
+# The TypeScript example in README.md must type-check against the published
+# package. Also weekly: a new release of the package must not break it.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  readme-example:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: scripts/check-readme-example.sh
