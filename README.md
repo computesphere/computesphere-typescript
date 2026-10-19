@@ -21,11 +21,11 @@ import { createClient, parseProblem } from "@computesphere/api-client";
 
 const api = createClient({
   baseUrl: "https://api.computesphere.com/v2",
-  token: () => getAccessToken(), // return your ComputeSphere access token
+  token: () => process.env.COMPUTESPHERE_API_TOKEN ?? "", // your ComputeSphere access token
 });
 
 const { data, error } = await api.GET("/regions", {
-  headers: { "x-account-id": accountId },
+  params: { header: { "x-account-id": process.env.COMPUTESPHERE_ACCOUNT_ID ?? "" } },
 });
 
 if (error) {
